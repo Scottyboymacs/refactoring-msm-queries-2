@@ -14,21 +14,21 @@ class Actor < ApplicationRecord
   def characters
     key = self.id
 
-    the_many = Character.where({ :actor_id => key })
+    the_characters = Character.where({ :actor_id => key })
 
-    return the_many
+    return the_characters
   end
 
   def filmography
-    the_many = Array.new
+    the_films = Array.new
 
-    self.characters.each do |joining_record|
-      destination_record = joining_record.movie
+    self.characters.each do |character|
+      destination_record = character.movie
 
-      the_many.push(destination_record)
+      the_films.push(destination_record)
     end
 
-    return the_many
+    return the_films
   end
 
 end
