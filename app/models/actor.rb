@@ -11,24 +11,9 @@
 #  updated_at :datetime         not null
 #
 class Actor < ApplicationRecord
-  def characters
-    key = self.id
 
-    the_characters = Character.where({ :actor_id => key })
+  has_many(:characters, {:class => "Character", :foreign_key => "actor_id"})
 
-    return the_characters
-  end
-
-  def filmography
-    the_films = Array.new
-
-    self.characters.each do |character|
-      destination_record = character.movie
-
-      the_films.push(destination_record)
-    end
-
-    return the_films
-  end
+  has_many(:filmography, {:class => "Movie", :foreign_key => "actor_id"})
 
 end
