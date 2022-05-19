@@ -12,8 +12,8 @@
 #
 class Actor < ApplicationRecord
 
-  has_many(:characters, {:class => "Character", :foreign_key => "actor_id"})
+  has_many(:characters, {:class_name => "Character", :foreign_key => "actor_id"})
 
-  has_many(:filmography, {:class => "Movie", :foreign_key => "actor_id"})
+  has_many(:filmography, {:through => "characters", :source => "movie" })
 
 end
